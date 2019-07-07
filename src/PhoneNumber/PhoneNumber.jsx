@@ -1,10 +1,10 @@
 import React from 'react'
 import { Input } from 'antd'
 
-import { AppContext } from '../App/context'
+import { MyContext } from '../Guide/context'
 
 export class PhoneNumber extends React.Component {
-  static contextType = AppContext
+  static contextType = MyContext
   state = {
     number: ''
   }
@@ -27,5 +27,5 @@ export class PhoneNumber extends React.Component {
   }
 }
 // same as line:7
-// PhoneNumber.contextType = AppContext
+// PhoneNumber.contextType = MyContext
 export default PhoneNumber

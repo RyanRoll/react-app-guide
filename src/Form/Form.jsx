@@ -1,13 +1,13 @@
 import React from 'react'
 import { Input, Button, Skeleton } from 'antd'
 
-import { AppContext } from '../App/context'
+import { MyContext } from '../Guide/context'
 import PhoneNumber from '../PhoneNumber'
 import styles from './styles/Form.module.scss'
 
 export class Form extends React.Component {
   // connects to the context
-  static contextType = AppContext
+  static contextType = MyContext
   // default state here
   state = {
     loading: true,

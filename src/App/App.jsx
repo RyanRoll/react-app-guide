@@ -1,51 +1,40 @@
 import React from 'react'
-import 'antd/dist/antd.css'
+import { Route, Switch, Link } from 'react-router-dom'
+import { Menu } from 'antd'
 
-import './styles/App.css'
-import logo from './logo.svg'
-import { Form } from '../Form'
-import { AppContext } from './context'
+import Main from '../Main'
+import Login from '../Login'
+import Guide from '../Guide'
+import PrivateRoute from '../PrivateRoute'
+
+// Single Page Application (SPA)
+// react-router
+// react-cookie
+// axios (async http request)
+// lodash
+// body-parser
 
 export class App extends React.Component {
-  state = {
-    username: '',
-    phoneNumber: ''
-  }
   render() {
-    const { username, phoneNumber } = this.state
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            GGGGGGG ss <code>src/App.js</code> and save to reload.
-          </p>
-          <div>username: {username}</div>
-          <div>phoneNumber:{phoneNumber}</div>
-        </header>
-        <AppContext.Provider
-          value={{
-            userID: '123456',
-            onPhoneChange: this.setPhoneChange
-          }}
-        >
-          <Form url="/foo/bar" number={100} onSubmit={this.setUserName}>
-            <h1>Hello</h1>
-            <h1>Form</h1>
-          </Form>
-        </AppContext.Provider>
-      </div>
+      <>
+        <Menu mode="horizontal">
+          <Menu.Item>
+            <Link to="/">Main</Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link to="/guide">Guide</Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link to="/login">Login</Link>
+          </Menu.Item>
+        </Menu>
+        <Switch>
+          <PrivateRoute path="/login" component={Login} />
+          <Route path="/guide" component={Guide} />
+          <PrivateRoute path="/" exact component={Main} />
+        </Switch>
+      </>
     )
-  }
-  setUserName = username => {
-    this.setState({
-      username
-    })
-  }
-  setPhoneChange = phoneNumber => {
-    console.log('phoneNumber', phoneNumber)
-    this.setState({
-      phoneNumber
-    })
   }
 }

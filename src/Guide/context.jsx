@@ -4,4 +4,4 @@ const defaultValue = {
   userID: '',
   onPhoneChange: null
 }
-export const AppContext = React.createContext(defaultValue)
+export const MyContext = React.createContext(defaultValue)
