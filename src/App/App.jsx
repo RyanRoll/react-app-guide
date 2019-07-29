@@ -4,8 +4,11 @@ import { Menu } from 'antd'
 
 import Main from '../Main'
 import Login from '../Login'
+import LoginFn from '../LoginFn'
 import Guide from '../Guide'
 import PrivateRoute from '../PrivateRoute'
+import FruitVendor from '../HOCs/FruitVendor'
+import Hooks from '../Hooks'
 
 // Single Page Application (SPA)
 // react-router
@@ -23,6 +26,12 @@ export class App extends React.Component {
             <Link to="/">Main</Link>
           </Menu.Item>
           <Menu.Item>
+            <Link to="/hoc">FruitVendor</Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link to="/hooks">Hooks</Link>
+          </Menu.Item>
+          <Menu.Item>
             <Link to="/guide">Guide</Link>
           </Menu.Item>
           <Menu.Item>
@@ -30,8 +39,10 @@ export class App extends React.Component {
           </Menu.Item>
         </Menu>
         <Switch>
-          <PrivateRoute path="/login" component={Login} />
+          <PrivateRoute path="/login" component={LoginFn} />
           <Route path="/guide" component={Guide} />
+          <Route path="/hoc" component={FruitVendor} />
+          <Route path="/hooks" component={Hooks} />
           <PrivateRoute path="/" exact component={Main} />
         </Switch>
       </>
