@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Form, Input, Button, notification } from 'antd'
 import axios from 'axios'
 import _ from 'lodash'
+
+import { AppContext } from '../App/context'
 
 import styles from './styles/Login.module.scss'
 
@@ -18,6 +20,7 @@ const formItemLayout = {
 
 const Login = props => {
   const [loading, setLoading] = useState(false)
+  const context = useContext(AppContext)
   const onSubmit = event => {
     const {
       form: { validateFieldsAndScroll },
@@ -42,6 +45,7 @@ const Login = props => {
             message: 'Success',
             description: 'Welcome!'
           })
+          context.updateLoginStatus(true)
           setTimeout(() => {
             history.push('/') // = <Redirect to="/" />
           }, 1000)
